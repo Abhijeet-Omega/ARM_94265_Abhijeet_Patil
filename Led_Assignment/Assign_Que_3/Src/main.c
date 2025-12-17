@@ -30,16 +30,16 @@
 void led_init(void);
 void led_on(void);
 void led_off(void);
+void led_run_lr(void);
 
 int main(void)
 {
 	led_init();
 	while(1)
 	{
-		led_on();
-		DelayMs(1000);
-		led_off();
-		DelayMs(1000);
+		DelayMs(500);
+		led_run_lr();
+		DelayMs(500);
 	}
 }
 
@@ -77,6 +77,24 @@ void led_off(void)
 	GPIOD->ODR &= ~(BV(13));
 	DelayMs(500);
 	GPIOD->ODR &= ~(BV(14));
+	DelayMs(500);
+	GPIOD->ODR &= ~(BV(15));
+}
+void led_run_lr(void)
+{
+	GPIOD->ODR |= BV(12);
+	DelayMs(500);
+	GPIOD->ODR &= ~(BV(12));
+	DelayMs(500);
+	GPIOD->ODR |= BV(13);
+	DelayMs(500);
+	GPIOD->ODR &= ~(BV(13));
+	DelayMs(500);
+	GPIOD->ODR |= BV(14);
+	DelayMs(500);
+	GPIOD->ODR &= ~(BV(14));
+	DelayMs(500);
+	GPIOD->ODR |= BV(15);
 	DelayMs(500);
 	GPIOD->ODR &= ~(BV(15));
 }
